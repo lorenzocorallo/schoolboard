@@ -1,0 +1,23 @@
+.home__homeworks,
+.home__memos,
+.home__topics {
+  .paper__header {
+    flex: 1 1 100%;
+    margin-bottom: 0;
+  }
+}
+
+.home__topics__content,
+.home__homeworks__content,
+.home__memos__content {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    background: none;
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgb(221, 221, 221);
+    width: 4px;
+    border-radius: 8px;
+  }
+}
