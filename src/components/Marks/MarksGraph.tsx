@@ -6,7 +6,7 @@ import Store from '../../models/store';
 import Paper from '../Styled/Paper';
 
 const Graph = styled(Paper)`
-  height: 40rem;
+  height: 40vh;
   position: relative;
   max-width: 100%;
   box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.12);
