@@ -115,7 +115,7 @@ export const fixSubject = (subject: string) => {
     return 'Ed. Civica';
   }
   if (lowerSubject.includes('matematica')) {
-    return 'Arte';
+    return 'Matematica';
   }
   if (lowerSubject.includes('arte')) {
     return 'Arte';
