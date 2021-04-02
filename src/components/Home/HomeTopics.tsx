@@ -13,8 +13,12 @@ import Paper from '../Styled/Paper';
 import HomeTopic from './HomeTopic';
 
 const Main = styled(HomeSection)`
-  grid-row: 3/4;
+  grid-row: 2/4;
   grid-column: 3/4;
+`;
+
+const NoContent = styled(Paper)`
+  flex: 1;
 `;
 
 const HomeTopics = () => {
@@ -37,9 +41,9 @@ const HomeTopics = () => {
       </HomeSectionHeader>
       <HomeSectionContent>
         {topics.length === 0 ? (
-          <Paper style={{ flex: 1 }}>
+          <NoContent>
             <p>Nessuna lezione oggi</p>
-          </Paper>
+          </NoContent>
         ) : (
           topics.map((topic) => <HomeTopic topic={topic} key={topic.id} />)
         )}

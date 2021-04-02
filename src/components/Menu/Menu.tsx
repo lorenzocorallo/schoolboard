@@ -34,7 +34,7 @@ const navItems = [
 const Main = styled.div`
   height: 100%;
   flex: 0 0 13rem;
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -107,7 +107,7 @@ const Menu = () => {
       );
       inactiveItems.map((el) =>
         gsap.to(el.querySelectorAll('svg path'), {
-          fill: '#8d8d8d',
+          fill: '#4b4b4b',
           duration: 0.3,
         })
       );

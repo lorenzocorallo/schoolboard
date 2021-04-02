@@ -8,6 +8,7 @@ const SidebarCalendar = styled(Calendar)`
     border-radius: 2rem;
     padding: 2rem;
     border: none;
+    margin: 2rem 0;
     max-height: unset;
     font-family: 'Roboto', sans-serif;
     padding: 1.5rem 4rem 2.5rem 4rem;

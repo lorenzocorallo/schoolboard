@@ -8,12 +8,18 @@ import Store from '../models/store';
 import MemosDate from '../components/Memos/MemosDate';
 import { checkIfSameDate, orderArrayByDate } from '../util/dates';
 import { Memo } from '../models/Student';
+import MemosFilter from '../components/Memos/MemosFilter';
 
-const Main = styled(AppSection)``;
-const Content = styled(Scrollable)`
-  padding-top: 2rem;
+const Main = styled(AppSection)`
+  display: flex;
+  flex-direction: column;
 `;
-
+const Content = styled(Scrollable)``;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 interface DateState {
   id: string;
   date: Date;
@@ -23,6 +29,9 @@ interface DateState {
 const Homeworks = () => {
   const memos = useSelector((store: Store) => store.student.memos);
   const [dates, setDates] = useState<DateState[]>([]);
+  const [filter, setFilter] = useState('');
+  const [filteredDates, setFilteredDates] = useState<DateState[]>([]);
+
   useEffect(() => {
     const localDates: DateState[] = [];
     memos.forEach((memo) => {
@@ -50,6 +59,25 @@ const Homeworks = () => {
     setDates(filledDates);
   }, [memos]);
 
+  useEffect(() => {
+    if (filter === '') {
+      setFilteredDates([...dates]);
+    } else {
+      const lowerFilter = filter.toLowerCase();
+      const array = dates
+        .map((date) => ({
+          ...date,
+          memos: date.memos.filter(
+            (v) =>
+              v.author.toLowerCase().includes(lowerFilter) ||
+              v.description.toLowerCase().includes(lowerFilter)
+          ),
+        }))
+        .filter((v) => v.memos.length > 0);
+      setFilteredDates(array);
+    }
+  }, [dates, filter]);
+
   // Animation
   const contentRef = useRef<HTMLDivElement>(null);
   const datesRef = useRef([] as HTMLDivElement[]);
@@ -70,13 +98,16 @@ const Homeworks = () => {
         delay: 0.1,
       });
     }
-  }, [dates, datesRef]);
+  }, [dates, datesRef, filteredDates]);
 
   return (
     <Main>
-      <AppSectionTitle>Promemoria</AppSectionTitle>
+      <Header>
+        <AppSectionTitle>Promemoria</AppSectionTitle>
+        <MemosFilter filter={filter} setFilter={setFilter} />
+      </Header>
       <Content ref={contentRef}>
-        {dates.map((date) => (
+        {filteredDates.map((date) => (
           <MemosDate
             ref={addToRef}
             date={date.date}

@@ -10,7 +10,7 @@ const Scrollable = styled.div`
   }
   ::-webkit-scrollbar-thumb {
     height: 10px;
-    background: rgb(200, 200, 200);
+    background: rgb(190, 190, 190);
     width: 4px;
     border-radius: 8px;
     transition: width 0.2s ease;

@@ -14,7 +14,7 @@ const StyledSidebarAbsents = styled(Paper)`
   align-items: start;
   font-weight: bold;
   padding: 1rem 3rem;
-  margin: 0;
+  margin: 2rem 0;
   font-size: 2rem;
   svg {
     margin: 0 0.8rem;
