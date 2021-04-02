@@ -31,6 +31,11 @@ const ContentColumn = styled.div`
   flex: 1;
 `;
 
+const NoContent = styled(Paper)`
+  display: inline-flex;
+  flex: 1;
+`;
+
 const HomeHws = () => {
   const selectedDate = useSelector((store: Store) => store.system.selectedDate);
   const storeHomeworks = useSelector((store: Store) => store.student.homeworks);
@@ -60,9 +65,9 @@ const HomeHws = () => {
       </HomeSectionHeader>
       <Content>
         {homeworks.length === 0 ? (
-          <Paper style={{ display: 'inline-flex', flex: 1 }}>
+          <NoContent>
             <p>Nessun compito assegnato</p>
-          </Paper>
+          </NoContent>
         ) : (
           <>
             <ContentColumn>

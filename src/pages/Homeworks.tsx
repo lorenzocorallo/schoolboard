@@ -8,11 +8,21 @@ import Scrollable from '../components/Styled/Scrollable';
 import Store from '../models/store';
 import { checkIfSameDate, orderArrayByDate } from '../util/dates';
 import { Homework } from '../models/Student';
+import HomeworksFilter from '../components/Homeworks/HomeworksFilter';
+import { fixSubject } from '../util/argo/util';
 
-const Main = styled(AppSection)``;
-const Content = styled(Scrollable)`
-  padding-top: 2rem;
+const Main = styled(AppSection)`
+  display: flex;
+  flex-direction: column;
 `;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Content = styled(Scrollable)``;
 
 interface DateState {
   id: string;
@@ -21,8 +31,10 @@ interface DateState {
 }
 
 const Homeworks = () => {
+  const [filter, setFilter] = useState('');
   const homeworks = useSelector((store: Store) => store.student.homeworks);
   const [dates, setDates] = useState<DateState[]>([]);
+  const [filteredDates, setFilteredDates] = useState<DateState[]>([]);
   useEffect(() => {
     const localDates: DateState[] = [];
     homeworks.forEach((hw) => {
@@ -50,6 +62,25 @@ const Homeworks = () => {
     setDates(filledDates);
   }, [homeworks]);
 
+  useEffect(() => {
+    if (filter === '') {
+      setFilteredDates([...dates]);
+    } else {
+      const lowerFilter = filter.toLowerCase();
+      const array = dates
+        .map((date) => ({
+          ...date,
+          homeworks: date.homeworks.filter(
+            (v) =>
+              fixSubject(v.subject).toLowerCase().includes(lowerFilter) ||
+              v.homework.toLowerCase().includes(lowerFilter)
+          ),
+        }))
+        .filter((v) => v.homeworks.length > 0);
+      setFilteredDates(array);
+    }
+  }, [dates, filter]);
+
   // Animation
   const contentRef = useRef<HTMLDivElement>(null);
   const datesRef = useRef([] as HTMLDivElement[]);
@@ -70,13 +101,16 @@ const Homeworks = () => {
         delay: 0.1,
       });
     }
-  }, [dates, datesRef]);
+  }, [dates, datesRef, filteredDates]);
 
   return (
     <Main>
-      <AppSectionTitle>Compiti</AppSectionTitle>
+      <Header>
+        <AppSectionTitle>Compiti</AppSectionTitle>
+        <HomeworksFilter filter={filter} setFilter={setFilter} />
+      </Header>
       <Content ref={contentRef}>
-        {dates.map((date) => (
+        {filteredDates.map((date) => (
           <HomeworksDate
             ref={addToRef}
             date={date.date}

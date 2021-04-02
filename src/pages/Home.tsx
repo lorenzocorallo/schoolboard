@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import gsap from 'gsap';
 import HomeHws from '../components/Home/HomeHws';
 import HomeMarks from '../components/Home/HomeMarks';
-import HomeMemos from '../components/Home/HomeMemos';
 import HomeTopics from '../components/Home/HomeTopics';
 import AppSection, { AppSectionTitle } from '../components/Styled/AppSection';
 
 const Main = styled(AppSection)`
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 5% 15rem 81%;
+  grid-template-columns: 35% 35% 30%;
+  grid-template-rows: auto auto 1fr;
   column-gap: 4px;
   max-height: 100%;
   max-width: calc(100vw - 48rem);
@@ -30,9 +29,8 @@ const Home = () => {
     <Main>
       <AppSectionTitle>Dashboard</AppSectionTitle>
       <HomeMarks />
-      <HomeHws />
       <HomeTopics />
-      <HomeMemos />
+      <HomeHws />
     </Main>
   );
 };

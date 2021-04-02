@@ -7,8 +7,9 @@ import HomeMark from './HomeMark';
 
 const Main = styled(Paper)`
   grid-row: 2/3;
-  grid-column: 1/4;
+  grid-column: 1/3;
   opacity: 0;
+  max-height: 12rem;
 `;
 
 const Content = styled(PaperContent)`

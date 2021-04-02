@@ -1,17 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Ellipse1,
-  Ellipse2,
-  Ellipse3,
-  Ellipse4,
-  Ellipse5,
-  Ellipse6,
-  Ellipse7,
-  Ellipse8,
-  Ellipse9,
-  Ellipse10,
-} from './BackgroundItems';
+import { Layer1 } from './BackgroundItems';
 
 const Main = styled.div`
   top: 0;
@@ -36,16 +25,7 @@ const Background = () => {
   return (
     <Main>
       <Filter />
-      <Ellipse1 />
-      <Ellipse2 />
-      <Ellipse3 />
-      <Ellipse4 />
-      <Ellipse5 />
-      <Ellipse6 />
-      <Ellipse7 />
-      <Ellipse8 />
-      <Ellipse9 />
-      <Ellipse10 />
+      <Layer1 />
     </Main>
   );
 };
