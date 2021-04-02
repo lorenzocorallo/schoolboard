@@ -6,23 +6,22 @@ import MarksSubject from '../components/Marks/MarksSubject';
 import AppSection, { AppSectionTitle } from '../components/Styled/AppSection';
 import Store from '../models/store';
 
-const Main = styled(AppSection)``;
+const Main = styled(AppSection)`
+  max-height: 100%;
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 const Content = styled.div`
+  height: auto;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
 `;
 
 const Marks = () => {
   const subjects = useSelector((store: Store) => store.student.subjects);
-
-  // const marksItemsRef = useRef([] as HTMLDivElement[]);
-  // marksItemsRef.current = [] as HTMLDivElement[];
-
-  // const addToRef = (el: HTMLAnchorElement | null) => {
-  //   if (el && !buttonsRef.current.includes(el)) {
-  //     buttonsRef.current.push(el);
-  //   }
-  // };
 
   return (
     <Main>

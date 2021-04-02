@@ -8,7 +8,6 @@ const Main = styled.div<{ theme: ThemeType; color: string }>`
   padding: 1rem;
   display: flex;
   align-items: center;
-  min-width: 22rem;
   flex: 0.32 1;
   border: 2px solid ${(props) => props.color};
   span {

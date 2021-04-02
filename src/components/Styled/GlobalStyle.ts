@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
     }
     html {
     font-size: 62.5%;
@@ -56,19 +57,6 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     color: ${(props) => props.theme.primary};
     }
 
-    /* // react calendar default style
-    @import '';
-    @import './react-calendar';
-
-    // Components
-    @import './background';
-    @import './menu';
-    @import './sidebar';
-
-    // Pages
-    @import './login';
-    @import './home';
-    @import './marks'; */
 
 `;
 
