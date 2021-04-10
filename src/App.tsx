@@ -6,7 +6,7 @@ import { fetchUser } from './redux/actions/student';
 import Router from './Router';
 import { systemLoad } from './redux/actions/system';
 import Background from './components/Background/Background';
-import { LightTheme } from './components/Styled/Theme';
+import { Theme } from './components/Styled/Theme';
 import GlobalStyle from './components/Styled/GlobalStyle';
 import Header from './components/Header/Header';
 
@@ -19,6 +19,7 @@ const StyledApp = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  background: #000;
 `;
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={LightTheme}>
+    <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Background />
       <StyledApp>

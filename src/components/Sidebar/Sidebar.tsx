@@ -65,14 +65,14 @@ const Sidebar = () => {
           )}
           prevLabel={
             <img
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', filter: 'brightness(10)' }}
               src={leftArrow}
               alt="previous month"
             />
           }
           nextLabel={
             <img
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', filter: 'brightness(10)' }}
               src={rightArrow}
               alt="next month"
             />

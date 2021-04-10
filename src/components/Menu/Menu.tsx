@@ -75,7 +75,7 @@ const NavButton = styled.button`
 `;
 
 const Menu = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const activeBoxRef = useRef(null);
   const buttonsRef = useRef([] as HTMLAnchorElement[]);
   buttonsRef.current = [] as HTMLAnchorElement[];
@@ -87,32 +87,33 @@ const Menu = () => {
   };
   useEffect(() => {
     const activeIndex = navItems.findIndex(
-      (item) => location.pathname.split('/')[1] === item.slug
+      (item) => pathname.split('/')[1] === item.slug
     );
+    const top = `${2.5 + 6.4 * activeIndex + 8 * activeIndex}rem`;
     const activeItem = buttonsRef.current[activeIndex];
     const inactiveItems = buttonsRef.current.filter((el) => el !== activeItem);
 
-    if (activeItem && activeBoxRef.current) {
+    if (activeItem && inactiveItems && activeBoxRef.current) {
       const tl = gsap.timeline();
       tl.to(activeBoxRef.current, {
-        top: `${2.5 + 6.4 * activeIndex + 8 * activeIndex}rem`,
+        top,
         duration: 0.3,
       }).to(
         activeItem.querySelectorAll('svg path'),
         {
-          fill: '#5385e7',
+          fill: '#FFAE50',
           duration: 0.2,
         },
-        '-=0.3'
+        '-=0.2'
       );
       inactiveItems.map((el) =>
         gsap.to(el.querySelectorAll('svg path'), {
-          fill: '#4b4b4b',
+          fill: '#C4C4C4',
           duration: 0.3,
         })
       );
     }
-  }, [location, activeBoxRef]);
+  }, [pathname, activeBoxRef]);
 
   return (
     <Main>

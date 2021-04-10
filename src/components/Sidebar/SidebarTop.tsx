@@ -3,14 +3,15 @@ import gsap from 'gsap';
 
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import AlarmSvg from '../../assets/img/AlarmSvg';
+// import AlarmSvg from '../../assets/img/AlarmSvg';
 import CalendarSvg from '../../assets/img/CalendarSvg';
 import RefreshSvg from '../../assets/img/RefreshSvg';
 import Store from '../../models/store';
 import { fetchUser } from '../../redux/actions/student';
 import { getExtendedDate } from '../../util/dates';
+import { ThemeType } from '../Styled/Theme';
 
-const StyledSidebarTop = styled.div`
+const StyledSidebarTop = styled.div<{ theme: ThemeType }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +39,7 @@ const StyledSidebarTop = styled.div`
       padding: 1rem;
       border-radius: 50%;
       &:hover {
-        background: rgba(255, 255, 255, 0.698);
+        background: ${(props) => props.theme.paper};
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.068);
       }
     }
@@ -91,11 +92,11 @@ const SidebarTop = () => {
           <RefreshSvg />
         </button>
       </div>
-      <div className="sidebar__notifications">
-        <button type="button">
-          <AlarmSvg />
-        </button>
-      </div>
+      {/* <div className="sidebar__notifications">
+          <button type="button">
+            <AlarmSvg />
+          </button>
+        </div> */}
     </StyledSidebarTop>
   );
 };

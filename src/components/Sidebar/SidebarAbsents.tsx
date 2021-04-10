@@ -6,8 +6,9 @@ import ClockSvg from '../../assets/img/ClockSvg';
 import ExitSvg from '../../assets/img/ExitSvg';
 import Store from '../../models/store';
 import Paper from '../Styled/Paper';
+import { ThemeType } from '../Styled/Theme';
 
-const StyledSidebarAbsents = styled(Paper)`
+const Main = styled(Paper)<{ theme: ThemeType }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,14 +17,21 @@ const StyledSidebarAbsents = styled(Paper)`
   padding: 1rem 3rem;
   margin: 2rem 0;
   font-size: 2rem;
+`;
+
+const Row = styled.div`
+  display: flex;
+  margin: 1.5rem 0;
+
+  justify-content: flex-start;
+  align-items: center;
   svg {
     margin: 0 0.8rem;
+    fill: ${(props) => props.theme.secondary};
   }
   span {
     margin: 0 0.5rem;
-  }
-  .paper__content {
-    margin: 1.5rem 0;
+    color: ${(props) => props.theme.secondary};
   }
 `;
 
@@ -32,20 +40,20 @@ const SidebarAbsents = () => {
     (store: Store) => store.student.absents
   );
   return (
-    <StyledSidebarAbsents>
-      <div className="paper__content">
+    <Main>
+      <Row>
         <AbsentsSvg />
-        <span className="primary">{absents.length || 0}</span> Assenze totali
-      </div>
-      <div className="paper__content">
+        <span>{absents.length || 0}</span> Assenze totali
+      </Row>
+      <Row>
         <ClockSvg />
-        <span className="primary">{delays.length || 0}</span> Ritardi totali
-      </div>
-      <div className="paper__content">
+        <span>{delays.length || 0}</span> Ritardi totali
+      </Row>
+      <Row>
         <ExitSvg />
-        <span className="primary">{exits.length || 0}</span> Uscite totali
-      </div>
-    </StyledSidebarAbsents>
+        <span>{exits.length || 0}</span> Uscite totali
+      </Row>
+    </Main>
   );
 };
 

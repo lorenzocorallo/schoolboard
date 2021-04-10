@@ -24,9 +24,8 @@ const Router = () => {
             <Route path="/homeworks" component={Homeworks} />
             <Route path="/marks" component={Marks} />
             <Route path="/home" component={Home} />
-            <Route path="/">
-              <Redirect to="/home" />
-            </Route>
+
+            <Redirect path="/" to="/home" />
           </Switch>
           <Sidebar />
         </>

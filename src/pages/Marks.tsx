@@ -1,38 +1,82 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  match as matchType,
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+
+import MarksSubjectDetail from '../components/Marks/MarksSubjectDetails';
+import AppSection, { AppSectionTitle } from '../components/Styled/AppSection';
 import MarksGraph from '../components/Marks/MarksGraph';
 import MarksSubject from '../components/Marks/MarksSubject';
-import AppSection, { AppSectionTitle } from '../components/Styled/AppSection';
 import Store from '../models/store';
+import { Subject } from '../models/Student';
 
-const Main = styled(AppSection)`
-  max-height: 100%;
-  overflow-y: auto;
+interface MatchProps {
+  match: matchType<{ id: string }>;
+}
+
+const Main = styled(AppSection)<{ scroll: boolean }>`
+  overflow-y: ${(props) => (props.scroll ? 'auto' : 'hidden')};
+  position: relative;
+  scroll-behavior: smooth;
   ::-webkit-scrollbar {
     display: none;
   }
 `;
+
 const Content = styled.div`
   height: auto;
-  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
 `;
 
-const Marks = () => {
-  const subjects = useSelector((store: Store) => store.student.subjects);
-
+const MarksHome = ({ subjects, id }: { subjects: Subject[]; id: string }) => {
+  const topRef = useRef<HTMLDivElement | undefined>();
+  const listRef = useRef<HTMLDivElement | undefined>();
+  useEffect(() => {
+    if (id && topRef) {
+      topRef.current.scrollIntoView();
+    }
+  }, [id]);
   return (
-    <Main>
+    <>
+      <div ref={topRef} style={{ position: 'absolute', top: 0 }} />
       <AppSectionTitle>Voti</AppSectionTitle>
       <MarksGraph />
-      <Content>
+      <Content ref={listRef}>
         {subjects.map((subject) => (
-          <MarksSubject key={subject.name} subject={subject} />
+          <MarksSubject key={subject.id} subject={subject} />
         ))}
       </Content>
+    </>
+  );
+};
+
+const MarksSwitch = ({ match }: MatchProps) => {
+  const { id } = match.params;
+  const subjects = useSelector((store: Store) => store.student.subjects);
+  const selectedSubject = subjects.find((item) => item.id === id);
+  return (
+    <Main scroll={!id}>
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {selectedSubject && <MarksSubjectDetail subject={selectedSubject} />}
+        </AnimatePresence>
+        <MarksHome id={id} subjects={subjects} />
+      </AnimateSharedLayout>
     </Main>
+  );
+};
+
+const Marks = () => {
+  return (
+    <Router>
+      <Route path={['/:id', '/']} component={MarksSwitch} />
+    </Router>
   );
 };
 

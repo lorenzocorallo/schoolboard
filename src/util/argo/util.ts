@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { uuid } from 'uuidv4';
 import { ArgoVoto } from '../../models/Argo';
 import { Homework, Mark, Subject, Topic } from '../../models/Student';
-import { getDefaultSchoolPeriods } from '../dates';
+import { getDefaultSchoolPeriods, orderArrayByDate } from '../dates';
 import { endpoint, headers as argoHeaders } from './api';
 
 export const prettyTeacher = (docente: string) =>
@@ -230,6 +231,7 @@ export const getSubjects = (
         topics: [],
         color: checkSubjectColor(hw.subject),
         avg: {},
+        id: uuid(),
       });
     }
   });
@@ -242,6 +244,7 @@ export const getSubjects = (
         topics: [],
         color: checkSubjectColor(mark.subject),
         avg: {},
+        id: uuid(),
       });
     }
   });
@@ -254,6 +257,7 @@ export const getSubjects = (
         topics: [],
         color: checkSubjectColor(topic.subject),
         avg: {},
+        id: uuid(),
       });
     }
   });
@@ -274,7 +278,12 @@ export const getSubjects = (
       });
     const sMarks = marks.filter((h) => h.subject === s.name);
     const sTopics = topics.filter((h) => h.subject === s.name);
-    return { ...s, homeworks: sHomeworks, topics: sTopics, marks: sMarks };
+    return {
+      ...s,
+      homeworks: orderArrayByDate(sHomeworks),
+      topics: orderArrayByDate(sTopics),
+      marks: orderArrayByDate(sMarks),
+    };
   });
 
   const getSchoolPeriods = () => {

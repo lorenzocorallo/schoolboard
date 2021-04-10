@@ -39,8 +39,8 @@ const NavButton = styled.button<{ theme: ThemeType }>`
   justify-content: center;
   svg {
     fill: ${(props) => props.theme.windowControlsFill};
-    width: 1.2rem;
-    height: 80%;
+    width: 1rem;
+    height: 1rem;
     pointer-events: none;
   }
   :hover {

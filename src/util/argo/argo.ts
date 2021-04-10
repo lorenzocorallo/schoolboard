@@ -23,6 +23,7 @@ import Student, {
   Today,
 } from '../../models/Student';
 import { headers as argoHeaders, endpoint as argoEndpoint } from './api';
+import { orderArrayByDate } from '../dates';
 
 export const argoLogin = async (
   school_code: string,
@@ -226,7 +227,7 @@ export const fetchMarks = async (school_code: string, token: string) => {
       type,
     };
   });
-  return marks;
+  return orderArrayByDate(marks);
 };
 
 export const fetchTopics = async (school_code: string, token: string) => {
@@ -246,7 +247,7 @@ export const fetchTopics = async (school_code: string, token: string) => {
       teacher,
     };
   });
-  return topics;
+  return orderArrayByDate(topics);
 };
 
 export const fetchMemos = async (school_code: string, token: string) => {
@@ -264,7 +265,7 @@ export const fetchMemos = async (school_code: string, token: string) => {
       author: desMittente,
     };
   });
-  return memos;
+  return orderArrayByDate(memos);
 };
 
 export const fetchAbsents = async (school_code: string, token: string) => {
