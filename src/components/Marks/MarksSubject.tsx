@@ -1,36 +1,44 @@
 import React from 'react';
+import { Link as RRLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Subject } from '../../models/Student';
+import { Subject as SubjectType } from '../../models/Student';
 import { checkSubjectColor } from '../../util/argo/util';
-import Paper, { PaperHeaderLine } from '../Styled/Paper';
+import {
+  Subject,
+  SubjectHeader,
+  SubjectLine,
+  SubjectTotAvg,
+  SubjectName,
+} from '../Styled/Marks';
 
-const Main = styled(Paper)`
+const Positioner = styled.div`
   flex: 1 1 30%;
-  font-size: 2.2rem;
-  cursor: pointer;
-  padding: 3rem;
-  transition: all 0.2s ease;
-  display: flex;
-  font-weight: bold;
-  justify-content: space-between;
-  align-items: center;
-  &:hover {
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
+  position: relative;
+  padding: 1rem;
+  display: block;
 `;
 
-const MarksSubject = ({ subject }: { subject: Subject }) => {
+const Link = styled(RRLink)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+const MarksSubject = ({ subject }: { subject: SubjectType }) => {
   return (
-    <Main>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <PaperHeaderLine
-          color={checkSubjectColor(subject.name)}
-          style={{ marginRight: '1rem' }}
-        />
-        <h4>{subject.name}</h4>
-      </div>
-      <p>{subject.avg.total || 0}</p>
-    </Main>
+    <Positioner>
+      <Subject layoutId={subject.id}>
+        <SubjectHeader layoutId={`${subject.id}__header`}>
+          <SubjectLine color={checkSubjectColor(subject.name)} />
+          <SubjectName>{subject.name}</SubjectName>
+          <SubjectTotAvg>{subject.avg.total || 0}</SubjectTotAvg>
+        </SubjectHeader>
+        <Link to="/" />
+      </Subject>
+      <Link to={`/${subject.id}`} />
+    </Positioner>
   );
 };
 

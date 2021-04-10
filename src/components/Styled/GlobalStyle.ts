@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
 
     }
     html {
+      background: ${(props) => props.theme.bg};
     font-size: 62.5%;
     }
     body {
@@ -17,6 +18,11 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     background: ${(props) => props.theme.bg};
     color: ${(props) => props.theme.text};
     overflow: hidden;
+    }
+
+    #root{
+      background: ${(props) => props.theme.bg};
+
     }
 
     input {

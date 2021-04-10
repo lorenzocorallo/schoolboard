@@ -1,9 +1,11 @@
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
+import chroma from 'chroma-js';
+import { ThemeType } from '../Styled/Theme';
 
-const SidebarCalendar = styled(Calendar)`
+const SidebarCalendar = styled(Calendar)<{ theme: ThemeType }>`
   &&& {
-    background: #fff;
+    background: ${(props) => props.theme.paper};
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.12);
     border-radius: 2rem;
     padding: 2rem;
@@ -37,8 +39,8 @@ const SidebarCalendar = styled(Calendar)`
     .react-calendar__navigation__arrow.react-calendar__navigation__next-button,
     .react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
       font-size: 2rem;
-      &:hover {
-        background: #eee;
+      :hover {
+        background: #383838;
       }
     }
     .react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
@@ -50,12 +52,11 @@ const SidebarCalendar = styled(Calendar)`
       cursor: default;
       flex-basis: 16rem;
       padding-top: 7px;
-      &:hover {
+      :hover {
         cursor: default;
-        background-color: #fff;
-        background: #fff;
+        background: #383838;
       }
-      &:disabled {
+      :disabled {
         background-color: inherit;
         color: inherit;
       }
@@ -73,14 +74,16 @@ const SidebarCalendar = styled(Calendar)`
       abbr[title] {
         text-decoration: none;
       }
-      &:nth-child(7) {
-        color: #d10000;
+      :nth-child(6),
+      :nth-child(7) {
+        color: #d62b2b;
       }
     }
     .react-calendar__tile {
       transition: all 0.1s ease;
     }
     .react-calendar__tile.react-calendar__month-view__days__day {
+      color: ${(props) => props.theme.text};
       height: 2.8rem;
       margin: 0.1rem;
       flex-basis: 2.8rem !important;
@@ -89,38 +92,31 @@ const SidebarCalendar = styled(Calendar)`
       justify-content: center;
       align-items: center;
       border-radius: 50%;
-      &:hover {
-        background: #eee;
+      &.react-calendar__month-view__days__day--weekend {
+        color: #d62b2b;
       }
-      &:nth-child(6) {
-        color: ${(props) => props.theme.text};
-      }
-      &:nth-child(13) {
-        color: ${(props) => props.theme.text};
-      }
-      &:nth-child(20) {
-        color: ${(props) => props.theme.text};
-      }
-      &:nth-child(27) {
-        color: ${(props) => props.theme.text};
+      :hover {
+        background: #383838;
       }
     }
     .react-calendar__tile--now {
       background-color: rgb(206, 222, 255);
-      &:hover {
+      :hover {
         background-color: rgb(190, 212, 255);
       }
     }
-    .react-calendar__tile--active,
-    .react-calendar__tile--active:focus,
-    .react-calendar__tile.react-calendar__month-view__days__day:nth-child(6):focus,
-    .react-calendar__tile.react-calendar__month-view__days__day:nth-child(13):focus,
-    .react-calendar__tile.react-calendar__month-view__days__day:nth-child(20):focus,
-    .react-calendar__tile.react-calendar__month-view__days__day:nth-child(27):focus {
-      background-color: ${(props) => props.theme.secondary};
+    .react-calendar__month-view__days__day.react-calendar__tile--active,
+    .react-calendar__month-view__days__day.react-calendar__tile--active:focus,
+    .react-calendar__month-view__days__day.react-calendar__tile:nth-child(6):focus,
+    .react-calendar__month-view__days__day.react-calendar__tile:nth-child(13):focus,
+    .react-calendar__month-view__days__day.react-calendar__tile:nth-child(20):focus,
+    .react-calendar__month-view__days__day.react-calendar__tile:nth-child(27):focus {
+      background-color: ${(props) =>
+        chroma(props.theme.secondary).darken(0.8).hex()};
       color: white;
-      &:hover {
-        background-color: mix(${(props) => props.theme.secondary}, #fff, 80%);
+      :hover {
+        background-color: ${(props) =>
+          chroma(props.theme.secondary).darken(0.5).hex()};
       }
     }
   }

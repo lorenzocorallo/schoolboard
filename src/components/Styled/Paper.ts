@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { ThemeType } from './Theme';
 
-const Paper = styled.div<{
+const Paper = styled(motion.div)<{
   theme: ThemeType;
   primary?: boolean;
   secondary?: boolean;
@@ -15,18 +16,13 @@ const Paper = styled.div<{
   padding: ${(props) => (props.primary || props.secondary ? '2.5rem' : '2rem')};
   margin: 1rem;
   h3 {
-    color: ${(props) =>
-      (props.primary && props.theme.invertedText) ||
-      (props.secondary && props.theme.invertedText)};
+    color: ${(props) => props.theme.text};
   }
 `;
 
 export const PaperHeader = styled.div`
   padding-bottom: 1rem;
   display: flex;
-  h3 {
-    color: ${(props) => props.theme.primary};
-  }
   p {
     font-size: 1.6rem;
     font-weight: 600;
@@ -44,10 +40,9 @@ export const PaperFooter = styled.div`
   align-items: center;
   justify-content: flex-end;
   font-size: 1.2rem;
-  color: #555555;
+  color: #aaa;
   margin-top: 1rem;
   padding-top: 0.6rem;
-  border-top: 1px solid #d8d8d8;
 `;
 
 export const PaperHeaderLine = styled.div<{ color?: string }>`

@@ -59,6 +59,7 @@ export interface Subject {
   homeworks: Homework[];
   marks: Mark[];
   topics: Topic[];
+  id: string;
   avg: {
     total?: number;
     first?: number;

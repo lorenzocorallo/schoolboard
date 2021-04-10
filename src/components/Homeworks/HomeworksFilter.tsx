@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ThemeType } from '../Styled/Theme';
 
 const Main = styled.div`
   padding: 2rem 1rem;
 `;
-const Input = styled.input``;
+const Input = styled.input<{ theme: ThemeType }>`
+  background: ${(props) => props.theme.paper};
+`;
 
 interface PropsType {
   filter: string;

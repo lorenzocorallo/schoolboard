@@ -12,9 +12,7 @@ export const HomeSectionHeader = styled(Paper)`
   padding: 2.5rem;
   margin: 1rem;
   background: ${(props) => props.theme.primary};
-  h3 {
-    color: ${(props) => props.theme.invertedText};
-  }
+  font-size: 1.8rem;
 `;
 
 export const HomeSectionContent = styled(Scrollable)`
