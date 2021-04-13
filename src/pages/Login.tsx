@@ -67,9 +67,8 @@ const StyledButton = styled(Button)<{ theme: ThemeType }>`
     margin: 0 1rem;
     height: 1.2rem;
   }
-  &:hover {
-    background-color: ${(props) =>
-      chroma.mix(props.theme.primary, '#fff', 0.3)};
+  :hover {
+    background-color: ${(props) => chroma(props.theme.primary).brighten(0.3)};
   }
 `;
 
@@ -82,6 +81,10 @@ const Label = styled.label`
   p {
     padding: 0.6rem;
   }
+`;
+
+const StyledInput = styled.input<{ theme: ThemeType }>`
+  background: ${(props) => props.theme.paper};
 `;
 
 const Input = ({
@@ -100,7 +103,7 @@ const Input = ({
   return (
     <Label htmlFor={name}>
       <p>{label}</p>
-      <input type={type} name={name} value={value} onChange={onChange} />
+      <StyledInput type={type} name={name} value={value} onChange={onChange} />
     </Label>
   );
 };
@@ -153,13 +156,13 @@ const Login = () => {
     await dispatch(loginUser(login.schoolCode, login.username, login.password));
   };
 
-  const updateSchoolCode = (e) => {
+  const updateSchoolCode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin({ ...login, schoolCode: e.target.value });
   };
-  const updateUsername = (e) => {
+  const updateUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin({ ...login, username: e.target.value });
   };
-  const updatePassword = (e) => {
+  const updatePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin({ ...login, password: e.target.value });
   };
 
