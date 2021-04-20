@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHTMLParser from 'react-html-parser';
 import styled from 'styled-components';
 import Paper, {
   PaperHeader,
@@ -7,10 +8,12 @@ import Paper, {
 } from '../Styled/Paper';
 import { Topic } from '../../models/Student';
 import { checkSubjectColor, fixSubject } from '../../util/argo/util';
+import { recognizeUrls } from '../../util/string';
 
 const Main = styled(Paper)``;
 
 const HomeTopic = ({ topic }: { topic: Topic }) => {
+  const { urlied } = recognizeUrls(topic.description);
   return (
     <Main className="home__section__item">
       <PaperHeader>
@@ -23,7 +26,7 @@ const HomeTopic = ({ topic }: { topic: Topic }) => {
             maxWidth: '100%',
           }}
         >
-          {topic.description}
+          {ReactHTMLParser(urlied)}
         </p>
       </PaperContent>
     </Main>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   match as matchType,
   BrowserRouter as Router,
@@ -19,8 +19,8 @@ interface MatchProps {
   match: matchType<{ id: string }>;
 }
 
-const Main = styled(AppSection)<{ scroll: boolean }>`
-  overflow-y: ${(props) => (props.scroll ? 'auto' : 'hidden')};
+const Main = styled(AppSection)<{ notScroll: boolean }>`
+  overflow-y: ${(props) => (props.notScroll ? 'hidden' : 'auto' || 'auto')};
   position: relative;
   scroll-behavior: smooth;
   ::-webkit-scrollbar {
@@ -61,7 +61,7 @@ const MarksSwitch = ({ match }: MatchProps) => {
   const subjects = useSelector((store: Store) => store.student.subjects);
   const selectedSubject = subjects.find((item) => item.id === id);
   return (
-    <Main scroll={!id}>
+    <Main notScroll={id && id !== 'D:'}>
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>
           {selectedSubject && <MarksSubjectDetail subject={selectedSubject} />}

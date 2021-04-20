@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeType } from './Theme';
 
@@ -23,6 +24,15 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     #root{
       background: ${(props) => props.theme.bg};
 
+    }
+
+    a{
+      color: ${(props) => props.theme.secondary};
+      text-decoration: none;
+      transition: all 0.2s ease;
+      :hover {
+        color: ${(props) => chroma(props.theme.secondary).brighten(0.5).hex()};
+      }
     }
 
     input {

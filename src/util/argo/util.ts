@@ -81,6 +81,9 @@ export const fixSubject = (subject: string) => {
     .replaceAll(',', '')
     .split(/\s+/);
   const lowerSubject = subject.toLocaleLowerCase();
+  if (lowerSubject.includes('filosofia')) {
+    return 'Filosofia';
+  }
   if (lowerSubject.includes('educazione') && lowerSubject.includes('fisica')) {
     return 'Ed. Fisica';
   }
