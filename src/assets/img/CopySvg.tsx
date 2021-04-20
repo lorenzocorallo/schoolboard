@@ -1,6 +1,6 @@
 import React from 'react';
 
-const copySvg = () => {
+const CopySvg = () => {
   return (
     <svg
       version="1.1"
@@ -57,4 +57,4 @@ const copySvg = () => {
   );
 };
 
-export default copySvg;
+export default CopySvg;

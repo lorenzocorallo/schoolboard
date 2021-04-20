@@ -12,7 +12,7 @@ import installer, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import { app, BrowserWindow, ipcMain, shell, clipboard } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -128,6 +128,15 @@ const createWindow = async () => {
 
   ipc.on('close', () => {
     mainWindow?.close();
+  });
+
+  ipcMain.on('copy', (event, text) => {
+    if (text) {
+      clipboard.writeText(text, 'clipboard');
+      event.reply('copy-response', true);
+    } else {
+      event.reply('copy-response', false);
+    }
   });
 
   // Remove this if your app does not use auto updates

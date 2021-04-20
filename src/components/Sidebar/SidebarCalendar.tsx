@@ -92,17 +92,16 @@ const SidebarCalendar = styled(Calendar)<{ theme: ThemeType }>`
       justify-content: center;
       align-items: center;
       border-radius: 50%;
+      transition: all 0.2s ease;
       &.react-calendar__month-view__days__day--weekend {
         color: #d62b2b;
       }
       :hover {
         background: #383838;
       }
-    }
-    .react-calendar__tile--now {
-      background-color: rgb(206, 222, 255);
-      :hover {
-        background-color: rgb(190, 212, 255);
+      &.react-calendar__tile--now:hover {
+        background-color: ${(props) =>
+          chroma(props.theme.primary).brighten(1).hex()};
       }
     }
     .react-calendar__month-view__days__day.react-calendar__tile--active,
@@ -118,6 +117,10 @@ const SidebarCalendar = styled(Calendar)<{ theme: ThemeType }>`
         background-color: ${(props) =>
           chroma(props.theme.secondary).darken(0.5).hex()};
       }
+    }
+    .react-calendar__tile--now {
+      background-color: ${(props) =>
+        chroma(props.theme.primary).brighten(0.8).hex()};
     }
   }
 `;
