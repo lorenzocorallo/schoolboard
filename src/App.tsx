@@ -4,7 +4,11 @@ import Router from "./Router"
 function App() {
     return (
         <DarkModeProvider>
-            <Router />
+            <div className="h-screen flex">
+                <Router />
+            </div>
         </DarkModeProvider>
     )
 }  
+
+export default App;

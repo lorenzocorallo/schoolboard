@@ -10,7 +10,7 @@ import Memos from './pages/Memos';
 
 function Router(){
     // const { isLogged } = useSelector((store: Store) => store.student);
-    const isLogged = false; // hard-coded while migrating.
+    const isLogged = true; // hard-coded while migrating.
 
     return (
         <BrowserRouter>
@@ -18,10 +18,10 @@ function Router(){
                 <>
                     <Navbar />
                     <Routes>
-                        <Route path="/memos" element={<Memos/>} />
-                        <Route path="/homeworks" element={<Homeworks/>} />
-                        <Route path="/marks" element={<Marks/>} />
-                        <Route path="/home" element={<Dashboard/>} index={true} />
+                        <Route path="memos" element={<Memos/>} />
+                        <Route path="homeworks" element={<Homeworks/>} />
+                        <Route path="marks" element={<Marks/>} />
+                        <Route path="dashboard" element={<Dashboard/>} index={true} />
                     </Routes>
                     <Sidebar />
                 </>
