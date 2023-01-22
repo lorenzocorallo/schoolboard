@@ -1,10 +1,10 @@
 import { DarkModeProvider } from "./context/DarkMode";
-import Router from "./Router";
+import Router from "./Router"
 
-export default function Main() {
+function App() {
     return (
         <DarkModeProvider>
             <Router />
         </DarkModeProvider>
-    ) 
-}
+    )
+}  
