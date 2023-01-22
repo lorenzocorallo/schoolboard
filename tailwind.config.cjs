@@ -5,7 +5,17 @@ module.exports = {
         "./src/**/*.{ts,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            animation: {
+                fadein: 'fadein 0.3s ease-in',
+            },
+            keyframes: {
+                fadein: {
+                    '0%': { opacity: "0%" },
+                    '100%': { opacity: "100%" },
+                }
+            }
+        },
     },
     plugins: [],
-}
+    darkMode: "class"}
