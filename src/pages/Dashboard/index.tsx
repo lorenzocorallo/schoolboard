@@ -1,4 +1,10 @@
+import Section from "../../components/Section";
+
 function Dashboard() {
-    return <h1>Dashboard</h1>
+    return (
+        <Section>
+            <h1>Dashboard</h1>
+        </Section>
+    )
 }
 export default Dashboard;
