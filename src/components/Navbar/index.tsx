@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { IoHome, IoSchool } from 'react-icons/io5';
 import { MdAssignment, MdLogout, MdPushPin } from 'react-icons/md'
+import Button from '../Button';
 
 const ICON_SIZE = 24;
 const navItems = [
@@ -26,17 +27,17 @@ const navItems = [
     },
 ];
 
-interface NavItemProps extends React.HTMLAttributes<HTMLDivElement> {
+interface NavItemProps extends React.HTMLAttributes<HTMLButtonElement> {
     isActive?: boolean;
 }
 const NavItem = ({isActive, children, className, ...props}: NavItemProps) => {
     return(
-        <div 
-            className={`${isActive ? 'bg-blue-300 dark:bg-slate-700' : 'bg-transparent' } p-3 rounded-xl cursor-pointer hover:bg-blue-100 dark:hover:bg-slate-700 transition-all ${className}`}
+        <Button 
+            className={`${isActive ? 'bg-blue-300 dark:bg-slate-700' : 'bg-transparent' }`}
             {...props}
         >
             {children}
-        </div>
+        </Button>
     )
 }
 
