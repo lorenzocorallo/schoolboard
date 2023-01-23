@@ -1,5 +1,7 @@
 # Schoolboard
 
+### This branch `electorn` is no longer maintained. Refer to `tauri` branch, actually in development.
+
 ## 0. Requisiti
 - Windows 7/8/8.1/10
 - Una connessione a internet
