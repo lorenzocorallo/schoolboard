@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
@@ -18,10 +19,12 @@ function Router(){
                 <>
                     <Navbar />
                     <Routes>
-                        <Route path="memos" element={<Memos/>} />
-                        <Route path="homeworks" element={<Homeworks/>} />
-                        <Route path="marks" element={<Marks/>} />
-                        <Route path="dashboard" element={<Dashboard/>} index={true} />
+                        <Route path="/" element={<Layout />}>
+                            <Route index element={<Dashboard/>} />
+                            <Route path="homeworks" element={<Homeworks/>} />
+                            <Route path="marks" element={<Marks/>} />
+                            <Route path="memos" element={<Memos/>} />
+                        </Route>
                     </Routes>
                     <Sidebar />
                 </>

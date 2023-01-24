@@ -8,29 +8,29 @@ const navItems = [
     {
         name: 'Dashboard',
         icon: <IoHome size={ICON_SIZE} />,
-        slug: 'dashboard'
+        slug: '/'
     },
     {
         name: 'Voti',
         icon: <IoSchool size={ICON_SIZE} />,
-        slug: 'marks',
+        slug: '/marks',
     },
     {
         name: 'Compiti',
         icon: <MdAssignment size={ICON_SIZE} />,
-        slug: 'homeworks',
+        slug: '/homeworks',
     },
     {
         name: 'Promemoria',
         icon: <MdPushPin size={ICON_SIZE} />,
-        slug: 'memos',
+        slug: '/memos',
     },
 ];
 
 interface NavItemProps extends React.HTMLAttributes<HTMLButtonElement> {
     isActive?: boolean;
 }
-const NavItem = ({isActive, children, className, ...props}: NavItemProps) => {
+function NavItem ({isActive, children, className, ...props}: NavItemProps) {
     return(
         <Button 
             className={`${isActive ? 'bg-blue-300 dark:bg-slate-700' : 'bg-transparent' }`}
@@ -41,14 +41,14 @@ const NavItem = ({isActive, children, className, ...props}: NavItemProps) => {
     )
 }
 
-const Navbar = () => {
+function Navbar() {
     return (
         <nav className='h-full flex p-3 flex-col items-center justify-between select-none'>
             <div className='flex flex-col gap-4'>
 
                 {navItems.map((item) => (
-                    <NavLink key={`nav-${item.name}`} to={`/${item.slug}`}>
-                        {({isActive}) => (
+                    <NavLink key={`nav-${item.name}`} to={item.slug}>
+                        {({ isActive }) => (
                             <NavItem isActive={isActive} children={item.icon} />
                         )}
                     </NavLink>
@@ -59,6 +59,6 @@ const Navbar = () => {
             </Link>
         </nav>
     );
-};
+}
 
 export default Navbar;

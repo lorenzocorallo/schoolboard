@@ -1,10 +1,6 @@
-import Section from "../../components/Section";
-
 function Dashboard() {
     return (
-        <Section>
-            <h1>Dashboard</h1>
-        </Section>
+        <h1>Dashboard</h1>
     )
 }
 export default Dashboard;

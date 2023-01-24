@@ -1,10 +1,6 @@
-import Section from "../../components/Section";
-
 function Homeworks() {
     return (
-        <Section>
-            <h1>Homeworks</h1>
-        </Section>
+        <h1>Homeworks</h1>
     )
 }
 export default Homeworks;
