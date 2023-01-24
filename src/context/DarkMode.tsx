@@ -6,6 +6,7 @@ interface IDarkModeContext {
 	isUserPreference: boolean;
 	setDarkMode: (dark: boolean) => void;
 	resetPreference: () => void;
+	toggleDarkMode: () => void;
 }
 
 const defaultState: IDarkModeContext = {
@@ -13,6 +14,7 @@ const defaultState: IDarkModeContext = {
 	isUserPreference: false,
 	setDarkMode: () => {},
 	resetPreference: () => {},
+	toggleDarkMode: () => {},
 };
 
 export const DarkModeContext = createContext<IDarkModeContext>(defaultState);
@@ -33,6 +35,10 @@ export const DarkModeProvider = ({ children, ...props }: HTMLAttributes<Provider
 		setIsDarkMode(defaultState.isDarkMode);
 	};
 
+    const toggleDarkMode = () => {
+        setDarkMode(!isDarkMode);
+    }
+
 	useEffect(() => {
 		const storedPreference = localStorage.getItem("darkMode");
 		if (storedPreference === null) {
@@ -51,7 +57,7 @@ export const DarkModeProvider = ({ children, ...props }: HTMLAttributes<Provider
 	}, [isDarkMode]);
 
 	return (
-		<DarkModeContext.Provider value={{ isDarkMode, setDarkMode, isUserPreference, resetPreference }} {...props}>
+		<DarkModeContext.Provider value={{ isDarkMode, setDarkMode, toggleDarkMode, isUserPreference, resetPreference }} {...props}>
 			{children}
 		</DarkModeContext.Provider>
 	);

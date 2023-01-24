@@ -18,7 +18,7 @@ export default function Notifications() {
 
     return(
         <div>
-            <p className="dark:bg-slate-700 rounded p-3 text-xl flex items-center gap-1">
+            <p className="bg-slate-100 dark:bg-slate-700 rounded p-3 text-xl flex items-center gap-1">
                 <MdNotifications /> Ultime notifiche
             </p>
 
@@ -26,7 +26,7 @@ export default function Notifications() {
                 <div className="flex flex-col flex-1 gap-3">
                     {groups[activeIdx] && groups[activeIdx].map(n => <Item key={n} text={n.toString()} />)}
                 </div>
-                <div className="rounded dark:bg-slate-700 flex flex-col justify-between items-center gap-1">
+                <div className="rounded bg-slate-100 dark:bg-slate-700 flex flex-col justify-between items-center gap-1">
                     <Button onClick={() => setActiveIdx(v => v-1)} className={`p-1 ${activeIdx > 0 ? "opacity-100" : "opacity-0 pointer-events-none"}`}><MdArrowUpward size={20} /></Button>
                     <div className="flex flex-col gap-2">
                         {groups.map((_v, i) => <div key={`dot-${i}`} className={`w-1 h-1 rounded-full border-[1px] border-white ${i === activeIdx ? "bg-white" : "bg-transparent"}`}></div>)}
@@ -44,7 +44,7 @@ function Item({type, text}: {text: string, type?: string }) {
         icon = <MdAssignment />
     }
     return (
-        <div className="dark:bg-slate-700 p-3 rounded flex-1">
+        <div className="bg-slate-100 dark:bg-slate-700 p-3 rounded flex-1">
             <p className="text-md flex items-center">{icon ?? <MdNotifications />} {type ?? "Notifica"}</p>
             <p>notification {text}</p>
         </div>
