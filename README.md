@@ -1,6 +1,16 @@
 # Schoolboard
 
-### Tauri branch in development, not all the features are available
+**Tauri branch in development, not all the features are available**
+
+## Development Instructions
+Note: other versions of Node.js and Rust may work.
+Anyway it's recommended to use LTS versions.
+1. Install Node.js >= 18
+2. Install Rust >= 1.66.0
+3. Follow the [Tauri setup guide](https://tauri.studio/en/docs/getting-started/intro)
+4. Run `npm install`
+5. Run `npm run tauri dev` to start Development
+
 
 <!-- ## 0. Requisiti -->
 <!-- - Windows 7/8/8.1/10 -->
